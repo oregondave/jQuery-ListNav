@@ -50,7 +50,7 @@
 				if (!opts.includeOther) $('.-', $letters).remove();
 
 				$(':last', $letters).addClass('ln-last'); // allows for styling a case where last item needs right border set (because items before that only have top, left and bottom so that border between items isn't doubled)
-				
+
 				if ($.cookie && (opts.cookieName != null)) {
 					var cookieLetter = $.cookie(opts.cookieName);
 					if (cookieLetter != null) opts.initLetter = cookieLetter;
@@ -159,7 +159,14 @@
 
 				// click handler for letters: shows/hides relevant LI's
 				//
+
+                var list = $('#listContainer');
+                var top = list.scrollTop();
+
 				$('a', $letters).click(function() {
+
+                    list.animate({ scrollTop: 0 }, '500');
+
 					$('a.ln-selected', $letters).removeClass('ln-selected');
 
 					var letter = $(this).attr('class').split(' ')[0];
@@ -196,7 +203,7 @@
 			}
 
 			// creates the HTML for the letter links
-			//	
+			//
 			function createLettersHtml() {
 				var html = [];
 				for (var i = 1; i < letters.length; i++) {
